@@ -1,0 +1,44 @@
+{% include "admin/navbar.html" %}
+<div class="container  p-5 rounded-5 bg-white" >
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Contact List</h1>
+        </div>
+        <hr/>
+
+        <div class="col-md-12 mt-5 table-responsive">
+            <table class="table table-borderd text-center" style="color: rgb(6, 3, 3); font-size: larger; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
+                <tr>
+                    <th>Action</th>
+                    <th>SN</th>
+                    <th>Name</th>
+                    <th>Mobile</th>
+                    <th>Email</th>
+                    <th>Subject</th>
+                    <th>Message</th>
+                    
+                </tr>
+            {% for i in contacts %}   
+                <tr>
+                    <td>
+                        <a href="/admin/delete_contact?id={{i.id}}">
+                            <button class="btn"><i class="fa fa-trash"></i></button>
+                        </a>
+                    </td>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.ctname}}</td>
+                    <td>{{i.ctmno}} </td>
+                    <td>{{i.ctemail}}</td>
+                    <td>{{i.ctsubject}}</td>
+                    <td>{{i.ctmsg}}</td>
+                    
+                </tr>
+            {% endfor %} 
+            </table>
+        </div> 
+        
+    </div>
+</div>
+</div>
+<hr>
+{% include "admin/footer.html" %}

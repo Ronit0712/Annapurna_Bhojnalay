@@ -1,0 +1,69 @@
+{% include "admin/navbar.html" %}
+<div class="container  p-5 rounded-5 bg-white" >
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Customer Record :</h1>
+        </div>
+        <hr/>
+
+        <div class="col-md-12 mt-5 table-responsive">
+            <table class="table table-borderd text-center" style="color: rgb(6, 3, 3); font-size: larger; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
+                <tr>
+                    <th>Action</th>
+                    <th>SN</th>
+                    <th>Name</th>
+                    <th>Mobile</th>
+                    <th>Address</th>
+                    <th>Meal Type</th>
+                    <th>Period</th>
+                    <th>Joining Date</th>
+                    <th>Payment Mode</th>
+                    <th>Total Amount</th>
+                    <th>Payment Status</th>
+
+
+                    
+                </tr>
+              {% for i in customers %}
+                <tr>
+                    <td>
+                        <a href="/admin/delete_customer?id={{i.id}}">
+                            <button class="btn"><i class="fa fa-trash"></i></button>
+                        </a>
+                    </td>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.cname}}</td>
+                    <td>{{i.cmobile}}</td>
+                    <td>{{i.caddress}}</td>
+                    <td>{{i.cmtype}}</td>
+                    <td>{{i.cperiod}}</td>
+                    <td>{{i.cjoindate}}</td>                   
+                    <td>{{i.cpaymode}}</td>
+                    <td>{{i.tamount}}</td>
+                    <td>
+                        {% if i.payment_status == 'pending' %}
+                            <a href="/admin/change_status_as_paid?id={{i.id}}"><button style="background-color: red;" class="btn  text-white  text-capitalize" onclick="confirm('Are You shure?')">
+                                {{i.payment_status}}
+                            </button></a>
+                        {% endif %}
+                        {% if i.payment_status == 'paid' %}
+                            <button style="background-color: green;" class="btn text-white text-capitalize">
+                                {{i.payment_status}}
+                            </button>
+                        {% endif %}
+                        
+                    </td>
+
+
+
+                    
+                </tr>
+            {% endfor %}
+            </table>
+        </div> 
+        
+    </div>
+</div>
+</div>
+<hr>
+{% include "admin/footer.html" %}

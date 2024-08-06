@@ -1,0 +1,40 @@
+{% include "admin/navbar.html" %}
+<div class="container  p-5 rounded-5 bg-white" >
+    <div class="row">
+        <div class="col-md-12">
+            <h1> About Us</h1>
+        </div>
+        <hr/>
+
+        <form action="/admin/save_about/" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="col-md-12">
+                <div class="row justify-content-center">
+                    <div class="col-md-2 p-2">
+                        <p>Image </p>
+                        <input type="file" name="abimg" class="form-control" />
+                    </div>
+                    <div class="col-md-2">
+                        <img src="/{{abouts.abimg}}" width="150px">
+                    </div>
+
+                    <div class="col-md-4 p-2">
+                        <p>Discription </p>
+                        <textarea  name="abdis" value="{{abouts.abdis}}" class="form-control"></textarea>
+                    </div>
+
+                    <div class="col-md-12 text-center mt-5">
+                        <button class="btn btn-dark btn-outline-success text-white">Update</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+       
+
+        </div>
+</div>
+ 
+
+<hr>
+{% include "admin/footer.html" %}

@@ -1,0 +1,60 @@
+{% include "admin/navbar.html" %}
+
+<!-- slider section -->
+<div class="container  p-5 rounded-5 bg-white" >
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Manage Slider :</h1>
+        </div>
+        <hr/>
+
+        <form action="/admin/save_sliderimg/" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="col-md-12">
+                <div class="row justify-content-center">
+                    <div class="col-md-4 p-2">
+                        <p>Upload Slider Image :</p>
+                        <input type="file" name="sliderimg" class="form-control" />
+                    </div>
+                    <div class="col-md-12 text-center mt-5">
+                        <button class="btn btn-dark btn-outline-success text-white">Upload</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="col-md-12 mt-5 table-responsive" >
+            <table class="table table-sm table-borderd  text-center" style=" color: rgb(77, 32, 57);;font-size: larger; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
+                <tr>
+                    <th>Action</th>
+                    <th>SN</th>
+                    <th>Image</th>
+                    
+                </tr>
+                {% for i in sliderimages %}
+                <tr>
+                    <td>
+                        
+                        <a href="/admin/delete_sliderimg?id={{i.id}}">
+                            <button class="btn"onclick="return confirm('are you sure?')"><i class="fa fa-trash"></i></button>
+                            </a>
+                    </td>
+                   
+                    <td>{{forloop.counter}}</td>
+                    <td>
+                        <img src="/{{i.sliderimg}}" width="150px">
+                    </td>
+                    
+
+                </tr>
+               {% endfor %}
+            
+            </table>
+         </div>
+
+</div>
+</div> 
+
+<hr>
+ 
+{% include "admin/footer.html" %}
